@@ -1,0 +1,42 @@
+{
+  "experiment": "03_live_public_data",
+  "date_utc": "2026-10-15",
+  "ethics": "read-only public GET, no scanning/probing",
+  "targets": [
+    {
+      "name": "kali_releases",
+      "url": "https://www.kali.org/releases/",
+      "http_status": 200,
+      "bytes": 67564,
+      "keyword_hit": true,
+      "status": "LIVE"
+    },
+    {
+      "name": "kali_home",
+      "url": "https://www.kali.org/",
+      "http_status": 200,
+      "bytes": 49956,
+      "keyword_hit": true,
+      "status": "LIVE"
+    },
+    {
+      "name": "owasp_wstg",
+      "url": "https://owasp.org/www-project-web-security-testing-guide/",
+      "http_status": 200,
+      "bytes": 92216,
+      "keyword_hit": true,
+      "status": "LIVE"
+    },
+    {
+      "name": "nvd_api",
+      "url": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=1",
+      "http_status": 200,
+      "bytes": 2515,
+      "keyword_hit": true,
+      "status": "LIVE",
+      "nvd_totalResults": 408310
+    }
+  ],
+  "live_count": 4,
+  "conclusion": "4/4 public sources live on 2026-10-15. Benchmark claims anchored to live docs/APIs, not book text."
+}

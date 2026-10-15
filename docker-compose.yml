@@ -1,0 +1,43 @@
+services:
+  analyzer:
+    build:
+      context: .
+      dockerfile: Dockerfile.analyzer
+    volumes:
+      - ./experiments:/app/experiments:ro
+      - ./data:/app/data:ro
+      - ./results:/app/results
+    working_dir: /app
+    command: ["python", "experiments/run_all.py"]
+    environment:
+      - PYTHONUNBUFFERED=1
+      - BENCHMARK_MODE=reproducible
+      - TZ=UTC
+
+  # Optional full lab targets — only start with --profile full-lab
+  # These are intentionally isolated, local-only vulnerable apps for
+  # AUTHORIZED defensive testing. Never point any tool at non-owned hosts.
+  dvwa:
+    image: vulnerables/web-dvwa:latest
+    profiles: ["full-lab"]
+    ports:
+      - "127.0.0.1:8081:80"
+    networks:
+      - isolated-lab
+    labels:
+      - "ethics=authorized-local-lab-only"
+
+  juice-shop:
+    image: bkimminich/juice-shop:latest
+    profiles: ["full-lab"]
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - isolated-lab
+    labels:
+      - "ethics=authorized-local-lab-only"
+
+networks:
+  isolated-lab:
+    driver: bridge
+    internal: true

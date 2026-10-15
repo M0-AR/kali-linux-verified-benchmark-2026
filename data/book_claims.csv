@@ -1,0 +1,23 @@
+id,chapter,claim_short,book_says_2019,ground_truth_2026,verdict,source
+B01,1,"Linux mid-1990s / everywhere (phones/servers)","Linux everywhere incl. Android","CONFIRMED 2026: still true; kernel ubiquitous (Android/servers/IoT/cloud)",CONFIRMED,openresearch OpenAlex + kali.org
+B02,1,"Kernel+bootloader+init+daemons+X+DE model","7-part OS model incl. X server","Largely CONFIRMED; modern notes: systemd dominates init, Wayland displacing X",CONFIRMED,NIST SP 800-115 background + distro docs
+B03,1,"14 distro list incl. Kali/Mint/Manjaro/Antergos","distro picker by skill","OUTDATED: Antergos discontinued 2019; CentOS Stream shift; new picks (2026) add Parrot/Exegol/Docker",OUTDATED,duckduckgo 2026 releases + HN threads
+B04,1,"Ubuntu Server has no GUI; CLI-only servers","server = no GUI","CONFIRMED in principle; 2026 adds cloud-init / container-first servers",CONFIRMED,Debian/Ubuntu server docs 2026
+B05,2,"VirtualBox .exe/.dmg + BitTorrent ISO + USB boot","ch.2 install walkthrough","OUTDATED: works but superseded by Kali Docker images + Exegol + cloud VMs + WSL",OUTDATED,websearch Exegol Docker 2026 + kali.org Docker/LXD
+B06,2,"Kali 1.0.5 screenshots; default root:toor","install as root/toor","DEPRECATED: Kali non-root default since 2020.4; 1.0.5 is 2013-era; current 2026.x rolling",DEPRECATED,openresearch education study (2018-2024 Kali versions) + kali.org/releases
+B07,3,"FHS table: /bin /etc /home /lib /tmp /usr /var /proc /dev /root","FHS walkthrough","CONFIRMED: FHS core stable; note /run + merged-/usr (usrmerge) are the 2026 deltas",CONFIRMED,exp01 live check + Debian FHS
+B08,4,"ls -a / mkdir / cd / pwd / cp / rm / rmdir / cat / less / head / tail","coreutils chapter","CONFIRMED: all still valid; verified executable in exp01",CONFIRMED,exp01 sandboxed execution
+B09,4,"grep -i / -v / -n / -c flags","grep flag table","CONFIRMED: flags unchanged in GNU grep 2026",CONFIRMED,exp01 + man grep
+B10,4,"man / whatis / --help / -h","help workflow","CONFIRMED; 2026 adds tldr/cheat as complements, man still canonical",CONFIRMED,exp01 + StackOverflow norms
+B11,5,"Fish shell primer ($PATH list, set, for-loops)","fish chapter","OUTDATED as default path: fish is fine but bash/zsh dominate; Kali default is zsh (since 2020.4)",OUTDATED,StackOverflow + Kali 2020.4 release notes
+B12,6,"nano + vi as the two editors","editor chapter","OUTDATED-scope: nano/vim still true but 2026 labs also expect VS Code Remote / micro / helix",OUTDATED,StackOverflow 2026 editor surveys
+B13,7,"rwx + ugo + chmod + octal 0-7 table","permissions chapter","CONFIRMED: octal mapping bit-identical; verified via stat in exp01",CONFIRMED,exp01 + man chmod
+B14,8,"printenv / env / PATH/HOME/PWD/SHELL/TERM list","env chapter","CONFIRMED: variable set unchanged; 2026 adds container-aware notes (ENV in Docker)",CONFIRMED,exp01 env check
+B15,9,"Open-source + free + stable + fast = hacker choice","why-hackers-use-Linux","CONFIRMED as motivation; 2026 evidence: KaliBench +9.5pp uplift on Kali vs Ubuntu env",CONFIRMED,KaliBench 2026 (Oct) + Merves et al. 2026
+B16,K1,"BackTrack -> Kali; Debian 7.0 base; 300+ tools","history section","OUTDATED numbers: Debian 7 base was 2013; 2026 rolling is Debian-testing based with 600+ tools / 1642 CLIs in KaliBench",OUTDATED,KaliBench 2026 + kali.org history
+B17,K1,"14 tool categories list","category taxonomy","CONFIRMED in spirit; KaliBench 2026 refines to 23 capability dims x 5 phases",CONFIRMED,KaliBench Fig.1 + kali.org tools page
+B18,K3,"Recon>Scan>Gain>Maintain>Clear + 10-step PTES-like flow","lifecycle chapters","OUTDATED framing: modern baseline is PTES 7-phase + NIST 800-115 + OWASP WSTG + MITRE ATT&CK hybrid",OUTDATED,PTES/NIST/OWASP 2026 docs + JAIC 2025 comparison
+B19,K4,"WEP cracking via Aircrack/Kismet/WEPCrack; WPA dict attack","wireless chapter","DEPRECATED+UNSAFE: WEP long dead; WPA2/WPA3 + PMF replace it; attacking non-owned nets is a crime — lab-only with authorization",UNSAFE,NIST/OWASP wireless guidance + WPA3 2026 news
+B20,K4,"MAC-spoof walkthrough (airmon-ng/macchanger/ifconfig)","spoof steps","UNSAFE: technique text is real but must never be run outside owned lab; modern defense is 802.1X + WPA3 + IDS",UNSAFE,OWASP + university ethics rules
+B21,K7,"ifconfig/iwconfig/hciconfig/hcitool as network core","network chapter","DEPRECATED: net-tools/iwconfig supplanted by iproute2 (ip) + iw; BlueZ CLI changed",DEPRECATED,Debian wiki + StackOverflow Docker perms
+B22,K8,"Change CMS defaults / HTTPS / updates / least-privilege / backups","web-security close","CONFIRMED: maps 1:1 to OWASP Top 10 mitigations + NIST controls in 2026",CONFIRMED,OWASP WSTG 4.2 + NIST SP 800-53 mapping

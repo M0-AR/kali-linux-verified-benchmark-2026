@@ -1,0 +1,142 @@
+{
+  "experiment": "01_linux_fundamentals",
+  "checks": [
+    {
+      "name": "fhs_exists:/bin",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/etc",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/home",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/tmp",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/usr",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/var",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/proc",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/dev",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "fhs_exists:/root",
+      "ok": true,
+      "detail": "exists"
+    },
+    {
+      "name": "cmd_pwd_runs",
+      "ok": true,
+      "detail": "/home/md/src/kali-linux-verified-benchmark-2026"
+    },
+    {
+      "name": "cmd_mkdir_ls",
+      "ok": true,
+      "detail": "backups"
+    },
+    {
+      "name": "cmd_cp",
+      "ok": true,
+      "detail": "backups\nfile1.txt\nfile2.txt"
+    },
+    {
+      "name": "cmd_cat",
+      "ok": true,
+      "detail": "hello"
+    },
+    {
+      "name": "cmd_head_tail",
+      "ok": true,
+      "detail": "a\nc"
+    },
+    {
+      "name": "cmd_grep_case_insensitive",
+      "ok": true,
+      "detail": "Science science SCIENCE"
+    },
+    {
+      "name": "cmd_rm",
+      "ok": true,
+      "detail": "backups\nfile1.txt"
+    },
+    {
+      "name": "cmd_rmdir_empty",
+      "ok": true,
+      "detail": "file1.txt"
+    },
+    {
+      "name": "chmod_octal_0_7_roundtrip",
+      "ok": true,
+      "detail": "0=---..7=rwx verified via stat"
+    },
+    {
+      "name": "chmod_755_is_rwxr_xr_x",
+      "ok": true,
+      "detail": "-rwxr-xr-x"
+    },
+    {
+      "name": "env_PATH",
+      "ok": true,
+      "detail": "/home/md/.bun/bin:/home/md/flutter/bin:/opt/llama:/home/md/snap/code/247/.local/share/../bin:/home/md/.opencode/bin:/hom"
+    },
+    {
+      "name": "env_HOME",
+      "ok": true,
+      "detail": "/home/md"
+    },
+    {
+      "name": "env_PWD",
+      "ok": true,
+      "detail": "/home/md/src/kali-linux-verified-benchmark-2026"
+    },
+    {
+      "name": "env_SHELL",
+      "ok": true,
+      "detail": "/bin/bash"
+    },
+    {
+      "name": "env_TERM",
+      "ok": true,
+      "detail": "xterm-256color"
+    },
+    {
+      "name": "editor_present:nano",
+      "ok": true,
+      "detail": "found"
+    },
+    {
+      "name": "editor_present:vi",
+      "ok": true,
+      "detail": "found"
+    },
+    {
+      "name": "modern_ip_cmd_available",
+      "ok": true,
+      "detail": "ip=yes, ifconfig=no(deprecated as expected)"
+    }
+  ],
+  "passed": 27,
+  "failed": 0
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kali Linux Verified Benchmark 2026 — From Book to Bench</title>
+<meta name="description" content="Docker-reproducible verification of a Linux/Kali beginner book against Oct 2026 reality. Live data, benchmarks, errata map, quiz from scratch to pro." />
+<style>
+:root{--bg:#0b1220;--card:#111c33;--line:#22345c;--txt:#e6edf7;--mut:#9fb0cc;--acc:#7dd3fc;--grn:#4ade80;--org:#fb923c;--red:#f87171}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+a{color:var(--acc)}header.hero{padding:56px 20px 30px;text-align:center;background:radial-gradient(800px 300px at 50% -50%,#1d3a6e,transparent)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin:3px;font-size:13px;color:var(--mut)}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+h1{font-size:clamp(28px,5vw,46px);margin:12px 0}h2{margin-top:48px;border-bottom:1px solid var(--line);padding-bottom:8px}
+p.lead{font-size:19px;color:var(--mut);max-width:760px;margin:0 auto}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.num{font-size:30px;font-weight:800}.small{color:var(--mut);font-size:14px}
+pre{background:#070d1a;border:1px solid var(--line);border-radius:12px;padding:14px;overflow:auto}
+code{color:#fde68a}img.demo{width:100%;max-width:760px;border-radius:12px;border:1px solid var(--line)}
+.btn{display:inline-block;background:var(--acc);color:#06202f;font-weight:700;border-radius:10px;padding:10px 18px;text-decoration:none;margin:6px}
+.btn.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}th{background:#0e1830}
+.bar{height:14px;border-radius:7px;background:#0e1830;overflow:hidden}.bar>i{display:block;height:100%}
+.tag{border-radius:6px;padding:1px 8px;font-size:12px;font-weight:700}.ok{background:#052e1b;color:var(--grn)}.warn{background:#3a2305;color:var(--org)}.bad{background:#3a0d0d;color:var(--red)}.gate{background:#2a1a4d;color:#c4b5fd}
+.quiz-q{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:12px;background:#0d1730}
+.quiz-q button{display:block;width:100%;text-align:left;margin:6px 0;padding:9px 12px;border-radius:9px;border:1px solid var(--line);background:#111f3d;color:var(--txt);cursor:pointer}
+.quiz-q button:hover{border-color:var(--acc)}.quiz-q button.right{border-color:var(--grn);background:#052e1b}.quiz-q button.wrong{border-color:var(--red);background:#3a0d0d}
+.explain{font-size:14px;color:var(--mut);display:none;margin-top:8px}
+.steps{background:#0d1730;border-left:4px solid var(--acc);padding:12px 16px;border-radius:0 12px 12px 0}
+footer{margin:60px 0 40px;color:var(--mut);font-size:14px;text-align:center}
+nav{position:sticky;top:0;background:rgba(11,18,32,.92);border-bottom:1px solid var(--line);padding:10px 20px;font-size:14px;z-index:5}
+nav a{margin-right:14px;text-decoration:none}
+</style>
+</head>
+<body>
+<nav>🔬 <b>Verified Benchmark 2026</b> &nbsp; <a href="#start">Start</a><a href="#results">Results</a><a href="#quiz">Quiz</a><a href="#stories">Uses</a><a href="#run">Run it</a><a href="#ethics">Ethics</a></nav>
+
+<header class="hero">
+<div class="wrap">
+<span class="badge">MIT license</span><span class="badge">Docker reproducible</span><span class="badge">4/4 live 2026-10-15</span><span class="badge">Defensive only</span>
+<h1>From Book to Bench:<br/>what is still true about Linux &amp; Kali in 2026?</h1>
+<p class="lead"><b>CEO summary:</b> we took a popular beginner book, re-ran every safe claim in Docker, checked every workflow claim against live public sources and peer-reviewed benchmarks, and packaged the proof. <b>Linux basics: 27/27 pass. 10 of 22 workflow claims need updating, retiring, or lab-only gating.</b> The modern answer is a hybrid method backed by real numbers — and you can reproduce it with one command.</p>
+<p><a class="btn" href="#quiz">🎓 Take the 5-minute quiz</a> <a class="btn ghost" href="#run">▶ Run it: docker compose up</a></p>
+<p><img class="demo" src="docs/demo.gif" alt="Animated terminal demo of the 4 experiments passing" /></p>
+<p class="small">30-second demo above = the real terminal output. Full website works offline as a single file.</p>
+</div>
+</header>
+
+<div class="wrap" id="start">
+<h2>📊 The answer in 4 numbers</h2>
+<div class="grid g4">
+<div class="card"><div class="num" style="color:var(--grn)">27/27</div><b>Linux basics pass</b><div class="small">Files, permissions, commands, help — sandboxed, host + Docker.</div></div>
+<div class="card"><div class="num">59 · 63 · 49</div><b>Findings trade-off</b><div class="small">Fast (85 min) vs deepest (127.5 min) vs governance (100 min) on identical targets.</div></div>
+<div class="card"><div class="num" style="color:var(--acc)">408,310</div><b>Live CVEs seen</b><div class="small">Vulnerability stream reachable on run day (4/4 sources live).</div></div>
+<div class="card"><div class="num">12 / 6 / 2 / 2</div><b>Claim audit</b><div class="small">12 keep · 6 patch · 2 retire · 2 lab-only with authorization.</div></div>
+</div>
+
+<h2>🌱 Beginner guide — read this and you are a professional</h2>
+<div class="steps"><b>Let's work this out in a step-by-step way to be sure we have the right answer.</b><br/>
+<b>Step 1.</b> Old books mix two things: Linux basics (timeless) + hacking workflows (expire fast). This project separates and proves each.<br/>
+<b>Step 2.</b> Linux = files in fixed places + <code>rwx</code> permissions (0–7) + small commands you chain. Example: <code>ls</code> lists, <code>grep -i</code> finds, <code>chmod 755</code> means <code>rwxr-xr-x</code>.<br/>
+<b>Step 3.</b> 2026 method = three lenses at once: <b>fast</b> app checks, <b>deep</b> lifecycle (scope → report), <b>governable</b> proof (authorization + risk mapping).<br/>
+<b>Step 4.</b> What changed: installs moved to containers, <code>ifconfig</code> → <code>ip</code>, old Wi-Fi attacks → modern encryption + defense, default passwords → non-root, 5-step stories → 7-phase professional flow.<br/>
+<b>Step 5.</b> Prove it: run the lab below, then score 8/10 on the quiz. You will know more than most interview candidates.</div>
+<pre><code>docker compose up --build
+cat results/exp01.json   # 27 passed, 0 failed
+cat results/exp04.json   # 12 / 6 / 2 / 2 audit</code></pre>
+
+<h2 id="results">🔬 Results (what was verified)</h2>
+<h3>Experiment 01 — Linux fundamentals (sandboxed)</h3>
+<p>Files, copy, search, permissions octal table, environment, help — all re-executed in a temp directory and cleaned up. Nothing on your system is modified.</p>
+<h3>Experiment 02 — Method benchmark</h3>
+<table><tr><th>Approach</th><th>Findings</th><th>Avg time</th><th>Per min</th><th>Cost/finding*</th><th>Best for</th></tr>
+<tr><td>Fast app checks</td><td>59</td><td>85.0 min</td><td>0.69</td><td>$3.60</td><td>Rapid / CI gating</td></tr>
+<tr><td>Deep lifecycle</td><td>63 (highest severity)</td><td>127.5 min</td><td>0.49</td><td>$5.06</td><td>Audits / red team</td></tr>
+<tr><td>Governance-led</td><td>49</td><td>100.0 min</td><td>0.49</td><td>$5.10</td><td>Compliance / risk</td></tr></table>
+<p class="small">*At a $150/h practitioner rate. Uncertainty intervals + Wilson CIs in <code>results/exp02.json</code>. Lesson: no single winner — mature teams layer all three.</p>
+<div class="bar" style="margin:6px 0"><i style="width:100%;background:var(--grn)"></i></div><div class="small">Fast: 59 findings</div>
+<div class="bar" style="margin:6px 0"><i style="width:100%;background:var(--acc)"></i></div><div class="small">Deep: 63 findings (most + most severe)</div>
+<div class="bar" style="margin:6px 0"><i style="width:100%;background:var(--org)"></i></div><div class="small">Governance: 49 findings (audit strength)</div>
+<h3>Experiment 03 — Live grounding (read-only)</h3>
+<p>Project docs, testing-guide docs, and the public vulnerability stream were reachable on 2026-10-15 (4/4). No scanning or probing — plain document/API reads only.</p>
+<h3>Experiment 04 — 22-claim errata map</h3>
+<table><tr><th>Verdict</th><th>Count</th><th>Examples</th></tr>
+<tr><td><span class="tag ok">KEEP</span></td><td>12</td><td>File layout, core commands, <code>grep</code> flags, <code>rwx</code>/octal, env vars, help workflow</td></tr>
+<tr><td><span class="tag warn">PATCH</span></td><td>6</td><td>Distro picker, VM-only install → containers, shell/editor defaults, tool counts, lifecycle story</td></tr>
+<tr><td><span class="tag bad">RETIRE</span></td><td>2</td><td>2013 screenshots + default password; <code>ifconfig</code>-era network stack → <code>ip</code></td></tr>
+<tr><td><span class="tag gate">LAB-ONLY</span></td><td>2</td><td>Wireless/MAC walkthroughs — owned lab + written authorization only; modern defense: current encryption + auth + monitoring</td></tr></table>
+
+<h2 id="quiz">🎓 Interactive quiz — from scratch to pro</h2>
+<p>Answer 10 questions. Explanations appear after each pick. <b>8/10 = pro.</b> Your score stays in this page (no account, no tracking).</p>
+<div id="quizbox"></div>
+<p><b>Result:</b> <span id="score">0/10 answered, 0 correct</span></p>
+<p><button class="btn" onclick="resetQuiz()">Restart quiz</button></p>
+
+<h2 id="stories">👥 What can I use this repo for?</h2>
+<div class="grid g4">
+<div class="card"><b>🌱 Learn Linux</b><div class="small">Run Exp 01, break things safely in Docker, re-run until green.</div></div>
+<div class="card"><b>💼 Win interviews</b><div class="small">Quote the trilemma + one errata example + show <code>summary.json</code>.</div></div>
+<div class="card"><b>🧑‍🏫 Teach 2026</b><div class="small">Replace 6 outdated + 2 retired sections with the syllabus in README §11.</div></div>
+<div class="card"><b>🛡️ Defend</b><div class="small">Use $/finding + severity to choose depth vs speed for your next assessment.</div></div>
+<div class="card"><b>🔬 Research</b><div class="small">Extend the 3 hidden patterns (half-life, trilemma, argument bottleneck) to a paper.</div></div>
+<div class="card"><b>🏗️ Build labs</b><div class="small">Fork the Compose file; keep the isolated-network + loopback-only pattern.</div></div>
+</div>
+
+<h2 id="run">▶ Run it yourself (5 minutes)</h2>
+<pre><code>git clone https://github.com/YOUR-USER/YOUR-REPO.git
+cd YOUR-REPO
+docker compose up --build
+cat results/summary.json</code></pre>
+<p><b>Publish as a website (GitHub Pages, 2026):</b> push → repo <b>Settings → Pages → Deploy from a branch → <code>main</code> + <code>/docs</code></b> → Save → open <code>https://YOUR-USER.github.io/YOUR-REPO/</code>. This page is already Pages-ready: single file, inline styles/scripts, plus <code>.nojekyll</code>.</p>
+
+<h2 id="ethics">🛡️ Ethics (read before labs)</h2>
+<p>Defensive and educational only. Test only systems you own or are explicitly authorized to test, with written scope. Isolated lab network, loopback-only ports. Wireless/identity techniques from old texts are documented here as <b>lab-only gated items</b> — never executed by any script in this repo. When in doubt, follow the authorized testing guides linked in the README references.</p>
+
+<h2>📚 Go deeper</h2>
+<p>Full evidence, hidden patterns, syllabus, limitations, and references live in <code>README.md</code> (355 lines, every number traceable to <code>results/*.json</code>). Data: <code>data/book_claims.csv</code>, <code>data/framework_comparison_2025.csv</code>.</p>
+
+<footer>MIT · Reproduce with <code>docker compose up --build</code> · Results in <code>results/</code> · Built Oct 2026</footer>
+</div>
+
+<script>
+const Q=[
+["A file has mode 755. What does the group get?",["rwx","r-x","r--","---"],1,"7=rwx (you), 5=r-x (group), 5=r-x (others). Groups typically read+execute, not write."],
+["Which command finds text case-insensitively?",["grep -i","grep -v","grep -c","grep -n"],0,"-i ignores case; -v inverts; -c counts; -n numbers lines."],
+["Where do system settings live on Linux?",["/home","/etc","/tmp","/proc"],1,"/etc holds host config. /home is yours, /tmp is throwaway, /proc is kernel view."],
+["Old tutorials use ifconfig. What is the modern replacement?",["ip","telnet","ftp","ping"],0,"net-tools/ifconfig is retired; iproute2 (ip, ss) is current."],
+["Old book logs in as root with a default password. What is the 2026 default?",["Always root","Non-root user + sudo","No passwords","Guest only"],1,"Modern images default to non-root; escalate explicitly with sudo."],
+["Which approach finds the MOST issues but takes longest?",["Fast app checks","Deep lifecycle","Governance-led","Guessing"],1,"63 findings at ~127.5 min: deepest, highest severity — the speed/depth trade-off."],
+["Which approach is fastest per assessment?",["Fast app checks (59 in ~85 min)","Deep lifecycle","Governance-led","None"],0,"~0.69 findings/min and lowest cost/finding — ideal for rapid/CI use."],
+["Old wireless-attack walkthroughs today are…?",["Fine on any network","Lab-only with written authorization","Faster on modern encryption","Untraceable"],1,"Only against owned, isolated labs with explicit written scope. Modern defense: current encryption + strong auth + monitoring."],
+["Best first step to fix an old syllabus?",["Delete everything","Keep basics, patch 6, retire 2, gate 2","Teach only tools","Skip labs"],1,"That is the 12/6/2/2 errata map this repo proves."],
+["How do you prove your result to others?",["Screenshot only","Re-run docker compose + show results/*.json","Say trust me","Edit numbers by hand"],1,"Reproducibility = same command, same JSON, uncertainty shown — never hand-edited numbers."]
+];
+let answered=Array(Q.length).fill(false), correct=0, done=0;
+const box=document.getElementById('quizbox');
+function render(){
+box.innerHTML='';
+Q.forEach((q,i)=>{
+ const d=document.createElement('div');d.className='quiz-q';d.id='q'+i;
+ d.innerHTML='<b>Q'+(i+1)+'.</b> '+q[0];
+ q[1].forEach((opt,j)=>{
+  const b=document.createElement('button');b.textContent=opt;
+  b.onclick=()=>answer(i,j,b);d.appendChild(b);
+ });
+ const e=document.createElement('div');e.className='explain';e.id='e'+i;e.textContent='💡 '+q[3];d.appendChild(e);
+ box.appendChild(d);
+});
+}
+function answer(i,j,btn){
+ if(answered[i])return;answered[i]=true;done++;
+ const qbox=document.getElementById('q'+i);
+ const btns=qbox.querySelectorAll('button');
+ btns.forEach(b=>b.disabled=true);
+ if(j===Q[i][2]){btn.classList.add('right');correct++;}
+ else{btn.classList.add('wrong');btns[Q[i][2]].classList.add('right');}
+ document.getElementById('e'+i).style.display='block';
+ document.getElementById('score').textContent=done+'/10 answered, '+correct+' correct'+(done===10?(correct>=8?' — PRO 🏆':' — keep going 💪'):'');
+}
+function resetQuiz(){answered=Array(Q.length).fill(false);correct=0;done=0;document.getElementById('score').textContent='0/10 answered, 0 correct';render();}
+render();
+</script>
+</body>
+</html>

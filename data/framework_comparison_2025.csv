@@ -1,0 +1,4 @@
+framework,dvwa_found,dvwa_valid,juiceshop_found,juiceshop_solved,time_avg_min,mean_sev_juice,recommendation
+OWASP,26,8,33,16,85.0,medium,rapid assessment / beginners / CI gating
+PTES,24,9,39,23,127.5,6.41 High,deep technical audit / red team
+NIST SP 800-115,20,0,29,0,100.0,6.04,compliance and risk-management integration

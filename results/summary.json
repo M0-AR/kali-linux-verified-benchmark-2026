@@ -1,0 +1,35 @@
+{
+  "benchmark": "kali-linux-verified-benchmark-2026",
+  "date_utc": "2026-10-15",
+  "ethics": "authorized defensive lab only; no offensive techniques executed",
+  "experiments": [
+    {
+      "script": "01_linux_fundamentals_verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "02_framework_benchmark.py",
+      "exit_code": 0
+    },
+    {
+      "script": "03_live_public_data_verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "04_book_claim_audit.py",
+      "exit_code": 0
+    }
+  ],
+  "results_snapshot": {
+    "exp01_passed": 27,
+    "exp01_failed": 0,
+    "exp02_finding": "Trilemma confirmed: OWASP fastest (0.69 vuln/min), PTES deepest (63 total, highest severity), NIST middle (49 total, compliance strength). No single winner \u2014 mature programs layer PTES lifecycle + OWA",
+    "exp03_live": 4,
+    "exp04_tally": {
+      "CONFIRMED": 12,
+      "OUTDATED": 6,
+      "DEPRECATED": 2,
+      "UNSAFE": 2
+    }
+  }
+}

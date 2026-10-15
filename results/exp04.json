@@ -1,0 +1,212 @@
+{
+  "experiment": "04_book_claim_audit",
+  "total_claims": 22,
+  "tally": {
+    "CONFIRMED": 12,
+    "OUTDATED": 6,
+    "DEPRECATED": 2,
+    "UNSAFE": 2
+  },
+  "outdated_deprecated_pct": 36.4,
+  "finding": "36% of sampled book claims are OUTDATED/DEPRECATED in Oct 2026. Core Linux concepts (FHS, rwx, pipes) CONFIRMED; tooling/workflow (Kali 1.0.5, ifconfig, WEP-era wireless, VirtualBox-only lab, fish-as-default) superseded by Kali 2026.x + Docker/Exegol + WPA3 + NIST/PTES/OWASP hybrid. Offensive steps reclassified UNSAFE without written authorization.",
+  "rows": [
+    {
+      "id": "B01",
+      "chapter": "1",
+      "claim_short": "Linux mid-1990s / everywhere (phones/servers)",
+      "book_says_2019": "Linux everywhere incl. Android",
+      "ground_truth_2026": "CONFIRMED 2026: still true; kernel ubiquitous (Android/servers/IoT/cloud)",
+      "verdict": "CONFIRMED",
+      "source": "openresearch OpenAlex + kali.org"
+    },
+    {
+      "id": "B02",
+      "chapter": "1",
+      "claim_short": "Kernel+bootloader+init+daemons+X+DE model",
+      "book_says_2019": "7-part OS model incl. X server",
+      "ground_truth_2026": "Largely CONFIRMED; modern notes: systemd dominates init, Wayland displacing X",
+      "verdict": "CONFIRMED",
+      "source": "NIST SP 800-115 background + distro docs"
+    },
+    {
+      "id": "B03",
+      "chapter": "1",
+      "claim_short": "14 distro list incl. Kali/Mint/Manjaro/Antergos",
+      "book_says_2019": "distro picker by skill",
+      "ground_truth_2026": "OUTDATED: Antergos discontinued 2019; CentOS Stream shift; new picks (2026) add Parrot/Exegol/Docker",
+      "verdict": "OUTDATED",
+      "source": "duckduckgo 2026 releases + HN threads"
+    },
+    {
+      "id": "B04",
+      "chapter": "1",
+      "claim_short": "Ubuntu Server has no GUI; CLI-only servers",
+      "book_says_2019": "server = no GUI",
+      "ground_truth_2026": "CONFIRMED in principle; 2026 adds cloud-init / container-first servers",
+      "verdict": "CONFIRMED",
+      "source": "Debian/Ubuntu server docs 2026"
+    },
+    {
+      "id": "B05",
+      "chapter": "2",
+      "claim_short": "VirtualBox .exe/.dmg + BitTorrent ISO + USB boot",
+      "book_says_2019": "ch.2 install walkthrough",
+      "ground_truth_2026": "OUTDATED: works but superseded by Kali Docker images + Exegol + cloud VMs + WSL",
+      "verdict": "OUTDATED",
+      "source": "websearch Exegol Docker 2026 + kali.org Docker/LXD"
+    },
+    {
+      "id": "B06",
+      "chapter": "2",
+      "claim_short": "Kali 1.0.5 screenshots; default root:toor",
+      "book_says_2019": "install as root/toor",
+      "ground_truth_2026": "DEPRECATED: Kali non-root default since 2020.4; 1.0.5 is 2013-era; current 2026.x rolling",
+      "verdict": "DEPRECATED",
+      "source": "openresearch education study (2018-2024 Kali versions) + kali.org/releases"
+    },
+    {
+      "id": "B07",
+      "chapter": "3",
+      "claim_short": "FHS table: /bin /etc /home /lib /tmp /usr /var /proc /dev /root",
+      "book_says_2019": "FHS walkthrough",
+      "ground_truth_2026": "CONFIRMED: FHS core stable; note /run + merged-/usr (usrmerge) are the 2026 deltas",
+      "verdict": "CONFIRMED",
+      "source": "exp01 live check + Debian FHS"
+    },
+    {
+      "id": "B08",
+      "chapter": "4",
+      "claim_short": "ls -a / mkdir / cd / pwd / cp / rm / rmdir / cat / less / head / tail",
+      "book_says_2019": "coreutils chapter",
+      "ground_truth_2026": "CONFIRMED: all still valid; verified executable in exp01",
+      "verdict": "CONFIRMED",
+      "source": "exp01 sandboxed execution"
+    },
+    {
+      "id": "B09",
+      "chapter": "4",
+      "claim_short": "grep -i / -v / -n / -c flags",
+      "book_says_2019": "grep flag table",
+      "ground_truth_2026": "CONFIRMED: flags unchanged in GNU grep 2026",
+      "verdict": "CONFIRMED",
+      "source": "exp01 + man grep"
+    },
+    {
+      "id": "B10",
+      "chapter": "4",
+      "claim_short": "man / whatis / --help / -h",
+      "book_says_2019": "help workflow",
+      "ground_truth_2026": "CONFIRMED; 2026 adds tldr/cheat as complements, man still canonical",
+      "verdict": "CONFIRMED",
+      "source": "exp01 + StackOverflow norms"
+    },
+    {
+      "id": "B11",
+      "chapter": "5",
+      "claim_short": "Fish shell primer ($PATH list, set, for-loops)",
+      "book_says_2019": "fish chapter",
+      "ground_truth_2026": "OUTDATED as default path: fish is fine but bash/zsh dominate; Kali default is zsh (since 2020.4)",
+      "verdict": "OUTDATED",
+      "source": "StackOverflow + Kali 2020.4 release notes"
+    },
+    {
+      "id": "B12",
+      "chapter": "6",
+      "claim_short": "nano + vi as the two editors",
+      "book_says_2019": "editor chapter",
+      "ground_truth_2026": "OUTDATED-scope: nano/vim still true but 2026 labs also expect VS Code Remote / micro / helix",
+      "verdict": "OUTDATED",
+      "source": "StackOverflow 2026 editor surveys"
+    },
+    {
+      "id": "B13",
+      "chapter": "7",
+      "claim_short": "rwx + ugo + chmod + octal 0-7 table",
+      "book_says_2019": "permissions chapter",
+      "ground_truth_2026": "CONFIRMED: octal mapping bit-identical; verified via stat in exp01",
+      "verdict": "CONFIRMED",
+      "source": "exp01 + man chmod"
+    },
+    {
+      "id": "B14",
+      "chapter": "8",
+      "claim_short": "printenv / env / PATH/HOME/PWD/SHELL/TERM list",
+      "book_says_2019": "env chapter",
+      "ground_truth_2026": "CONFIRMED: variable set unchanged; 2026 adds container-aware notes (ENV in Docker)",
+      "verdict": "CONFIRMED",
+      "source": "exp01 env check"
+    },
+    {
+      "id": "B15",
+      "chapter": "9",
+      "claim_short": "Open-source + free + stable + fast = hacker choice",
+      "book_says_2019": "why-hackers-use-Linux",
+      "ground_truth_2026": "CONFIRMED as motivation; 2026 evidence: KaliBench +9.5pp uplift on Kali vs Ubuntu env",
+      "verdict": "CONFIRMED",
+      "source": "KaliBench 2026 (Oct) + Merves et al. 2026"
+    },
+    {
+      "id": "B16",
+      "chapter": "K1",
+      "claim_short": "BackTrack -> Kali; Debian 7.0 base; 300+ tools",
+      "book_says_2019": "history section",
+      "ground_truth_2026": "OUTDATED numbers: Debian 7 base was 2013; 2026 rolling is Debian-testing based with 600+ tools / 1642 CLIs in KaliBench",
+      "verdict": "OUTDATED",
+      "source": "KaliBench 2026 + kali.org history"
+    },
+    {
+      "id": "B17",
+      "chapter": "K1",
+      "claim_short": "14 tool categories list",
+      "book_says_2019": "category taxonomy",
+      "ground_truth_2026": "CONFIRMED in spirit; KaliBench 2026 refines to 23 capability dims x 5 phases",
+      "verdict": "CONFIRMED",
+      "source": "KaliBench Fig.1 + kali.org tools page"
+    },
+    {
+      "id": "B18",
+      "chapter": "K3",
+      "claim_short": "Recon>Scan>Gain>Maintain>Clear + 10-step PTES-like flow",
+      "book_says_2019": "lifecycle chapters",
+      "ground_truth_2026": "OUTDATED framing: modern baseline is PTES 7-phase + NIST 800-115 + OWASP WSTG + MITRE ATT&CK hybrid",
+      "verdict": "OUTDATED",
+      "source": "PTES/NIST/OWASP 2026 docs + JAIC 2025 comparison"
+    },
+    {
+      "id": "B19",
+      "chapter": "K4",
+      "claim_short": "WEP cracking via Aircrack/Kismet/WEPCrack; WPA dict attack",
+      "book_says_2019": "wireless chapter",
+      "ground_truth_2026": "DEPRECATED+UNSAFE: WEP long dead; WPA2/WPA3 + PMF replace it; attacking non-owned nets is a crime — lab-only with authorization",
+      "verdict": "UNSAFE",
+      "source": "NIST/OWASP wireless guidance + WPA3 2026 news"
+    },
+    {
+      "id": "B20",
+      "chapter": "K4",
+      "claim_short": "MAC-spoof walkthrough (airmon-ng/macchanger/ifconfig)",
+      "book_says_2019": "spoof steps",
+      "ground_truth_2026": "UNSAFE: technique text is real but must never be run outside owned lab; modern defense is 802.1X + WPA3 + IDS",
+      "verdict": "UNSAFE",
+      "source": "OWASP + university ethics rules"
+    },
+    {
+      "id": "B21",
+      "chapter": "K7",
+      "claim_short": "ifconfig/iwconfig/hciconfig/hcitool as network core",
+      "book_says_2019": "network chapter",
+      "ground_truth_2026": "DEPRECATED: net-tools/iwconfig supplanted by iproute2 (ip) + iw; BlueZ CLI changed",
+      "verdict": "DEPRECATED",
+      "source": "Debian wiki + StackOverflow Docker perms"
+    },
+    {
+      "id": "B22",
+      "chapter": "K8",
+      "claim_short": "Change CMS defaults / HTTPS / updates / least-privilege / backups",
+      "book_says_2019": "web-security close",
+      "ground_truth_2026": "CONFIRMED: maps 1:1 to OWASP Top 10 mitigations + NIST controls in 2026",
+      "verdict": "CONFIRMED",
+      "source": "OWASP WSTG 4.2 + NIST SP 800-53 mapping"
+    }
+  ]
+}
