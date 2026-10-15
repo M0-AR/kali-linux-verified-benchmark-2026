@@ -23,7 +23,7 @@
       "name": "owasp_wstg",
       "url": "https://owasp.org/www-project-web-security-testing-guide/",
       "http_status": 200,
-      "bytes": 92216,
+      "bytes": 93491,
       "keyword_hit": true,
       "status": "LIVE"
     },
@@ -34,7 +34,7 @@
       "bytes": 2515,
       "keyword_hit": true,
       "status": "LIVE",
-      "nvd_totalResults": 408310
+      "nvd_totalResults": 408320
     }
   ],
   "live_count": 4,

@@ -15,9 +15,11 @@
 > **What is this?** A Docker-packaged, beginner-to-pro verification of a popular Linux/Kali beginner book against Oct 2026 reality — with live public data, real benchmark numbers, and an interactive website + quiz.
 > **Bottom line:** Linux basics still pass 27/27. 10 of 22 sampled hacking-workflow claims are outdated, deprecated, or lab-only. The modern replacement is a hybrid method (fast app checks + deep lifecycle + governance) backed by 2026 benchmarks.
 > **Who is it for?** Students, teachers, interview candidates, SOC analysts, and lab builders who want proof — not opinions.
-> **Try it now:** `docker compose up --build` reproduces everything · 🌐 **[Open the interactive website](preview.html)** · 🎓 **[Start the beginner guide](#-beginner-guide--read-this-and-you-are-a-professional)** · ❓ **[Take the quiz](preview.html#quiz)**
+> **Try it now:** `docker compose up --build` reproduces everything · 🌐 **[Open the live site](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/)** · 🎓 **[Start the beginner guide](#-beginner-guide--read-this-and-you-are-a-professional)** · ❓ **[Take the quiz](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/preview.html#quiz)**
 
-> **New here?** Start at [🌱 Beginner guide](#-beginner-guide--read-this-and-you-are-a-professional) — you will know more than most interview candidates. Then open the [interactive website](preview.html) and take the quiz from scratch to pro.
+> **New here?** Start at [🌱 Beginner guide](#-beginner-guide--read-this-and-you-are-a-professional) — you will know more than most interview candidates. Then open the [live interactive site](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/) and take the quiz from scratch to pro.
+
+> **🔗 Live links (click to render in browser):** [`/`](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/) · [`/preview.html`](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/preview.html) · [`/docs/preview.html`](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/docs/preview.html) — see [Website & GitHub Pages](#-website--github-pages-click-the-link-see-it-as-a-web-page) for which one renders under your Pages source setting.
 
 ---
 
@@ -303,7 +305,7 @@ cat results/exp04.json   # 12 confirmed / 6 outdated / 2 deprecated / 2 lab-only
 
 **Step 4 — What changed since the book.** Install via VirtualBox ISOs → now Docker/ready-made images. `ifconfig` → `ip`. Old Wi-Fi attacks → modern encryption + defense. Default `root` password → non-root by default. Old tool counts → 600+ tools today. Old 5-step story → 7-phase professional lifecycle.
 
-**Step 5 — Prove you learned it.** Open the [interactive website](preview.html#quiz) and score 8/10 on the quiz. Then explain the trilemma (fast/deep/governable) in one minute. That is the interview answer.
+**Step 5 — Prove you learned it.** Open the [live quiz](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/preview.html#quiz) and score 8/10 on the quiz. Then explain the trilemma (fast/deep/governable) in one minute. That is the interview answer.
 
 ```mermaid
 flowchart LR
@@ -320,12 +322,21 @@ flowchart LR
 
 ## 🌐 Website & GitHub Pages (click the link, see it as a web page)
 
+- **Live links (click to render in browser):** [`/`](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/) · [`/preview.html`](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/preview.html) · [`/docs/preview.html`](https://M0-AR.github.io/kali-linux-verified-benchmark-2026/docs/preview.html)
 - **Local preview:** open `preview.html` in any browser — no build, no server.
-- **Publish free in 2026:**
-  1. Push this repo to GitHub (public).
+- **Publish free (recommended):**
+  1. Push this repo to GitHub (public) — already done at `M0-AR/kali-linux-verified-benchmark-2026`.
   2. Go to **Settings → Pages → Deploy from a branch** → select `main` + `/docs` → Save.
-  3. Wait ~1 min → your site is live at `https://YOUR-USER.github.io/YOUR-REPO/`.
-  4. The site is `docs/index.html` (mirrors `preview.html`) + `.nojekyll` so Pages serves it exactly as designed.
+  3. Wait 1–2 min, check the Actions “pages build and deployment” run, then probe:
+```bash
+BASE="https://M0-AR.github.io/kali-linux-verified-benchmark-2026"
+for p in "" "preview.html" "docs/preview.html"; do
+  printf "%s -> " "/$p"
+  curl -s -o /dev/null -w "%{http_code}\n" "$BASE/$p"
+done
+```
+  4. Read the result like this: `200/200/404` = source `/docs` ✅ (recommended); `200/404/200` = source `/` (root) — the file only resolves under `/docs`; `404/404/404` = Pages off / still building / wrong branch.
+- **Why three URLs?** The entry file (`index.html`) must sit at the top of the chosen source (`/` or `/docs`). Every other URL mirrors the repo path under that source: source `/docs` → repo `docs/x.html` serves at `/x.html`; source `/` → repo `docs/x.html` serves at `/docs/x.html`. This repo ships mirrors so both settings resolve: root `preview.html` + `index.html` (redirect with fallbacks) and `docs/preview.html` + `docs/index.html`. An empty `.nojekyll` sits in both `/` and `/docs` so Pages serves files exactly as designed.
 - **Custom page:** everything is one self-contained file (inline CSS/JS, no dependencies) — the data shown comes from `results/*.json` embedded at build time.
 
 ## 🎬 Demo (GIF + video path)
